@@ -34,8 +34,9 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -86,6 +87,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 	private int dividerPadding = 12;
 	private int tabPadding = 24;
 	private int dividerWidth = 1;
+    private int iconSize = 25;
 
 	private int tabTextSize = 12;
 	private int tabTextColor = 0xFF666666;
@@ -126,6 +128,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 		tabPadding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, tabPadding, dm);
 		dividerWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dividerWidth, dm);
 		tabTextSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, tabTextSize, dm);
+        iconSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, iconSize, dm);
 
 		// get system attrs (android:textSize and android:textColor)
 
@@ -151,6 +154,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 		shouldExpand = a.getBoolean(R.styleable.PagerSlidingTabStrip_pstsShouldExpand, shouldExpand);
 		scrollOffset = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_pstsScrollOffset, scrollOffset);
 		textAllCaps = a.getBoolean(R.styleable.PagerSlidingTabStrip_pstsTextAllCaps, textAllCaps);
+        iconSize = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_pstsIconSize, iconSize);
 
 		a.recycle();
 
@@ -236,11 +240,15 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 	private void addIconTab(final int position, int resId) {
 
-		ImageButton tab = new ImageButton(getContext());
-		tab.setImageResource(resId);
+        FrameLayout tab = new FrameLayout(getContext());
+		ImageView ib = new ImageView(getContext());
+        LayoutParams lp = new LayoutParams(iconSize, iconSize);
+        lp.gravity = Gravity.CENTER;
+        ib.setLayoutParams(lp);
+        ib.setImageResource(resId);
+        tab.addView(ib);
 
 		addTab(position, tab);
-
 	}
 
 	private void addTab(final int position, View tab) {
