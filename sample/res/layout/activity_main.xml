@@ -1,8 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/tabs"
@@ -26,7 +25,7 @@
         android:layout_marginBottom="8dip"
         android:layout_marginLeft="4dip"
         android:layout_marginRight="4dip"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="0dip"
