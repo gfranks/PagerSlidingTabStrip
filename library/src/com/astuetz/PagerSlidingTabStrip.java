@@ -37,6 +37,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -276,12 +277,11 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         tabsContainer.addView(tab, position, shouldExpand ? expandedTabLayoutParams : defaultTabLayoutParams);
     }
 
-    public void deactivateTab(View tab) {
+    private void deactivateTab(View tab) {
         if (applyTabStates) {
             if (pager.getAdapter() instanceof IconTabProvider || pager.getAdapter() instanceof DrawableTabProvider) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     ((ImageView) ((FrameLayout) tab).getChildAt(0)).getDrawable().setColorFilter(Color.argb(0x99, Color.red(tabIconColor), Color.green(tabIconColor), Color.blue(tabIconColor)), PorterDuff.Mode.SRC_IN);
-//                    ((ImageView) ((FrameLayout) tab).getChildAt(0)).setImageAlpha(0x99);
                 } else {
                     ((ImageView) ((FrameLayout) tab).getChildAt(0)).setAlpha(0x99);
                 }
@@ -292,8 +292,6 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             if (pager.getAdapter() instanceof IconTabProvider || pager.getAdapter() instanceof DrawableTabProvider) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     ((ImageView) ((FrameLayout) tab).getChildAt(0)).getDrawable().setColorFilter(Color.argb(0xFF, Color.red(tabIconColor), Color.green(tabIconColor), Color.blue(tabIconColor)), PorterDuff.Mode.SRC_IN);
-                    // this doen't work for 4.4
-//                    ((ImageView) ((FrameLayout) tab).getChildAt(0)).setImageAlpha(0xFF);
                 } else {
                     ((ImageView) ((FrameLayout) tab).getChildAt(0)).setAlpha(0xFF);
                 }
@@ -303,13 +301,11 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         }
     }
 
-    public void activateTab(View tab) {
+    private void activateTab(View tab) {
         if (applyTabStates) {
             if (pager.getAdapter() instanceof IconTabProvider || pager.getAdapter() instanceof DrawableTabProvider) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     ((ImageView) ((FrameLayout) tab).getChildAt(0)).getDrawable().setColorFilter(Color.argb(0xFF, Color.red(tabIconColor), Color.green(tabIconColor), Color.blue(tabIconColor)), PorterDuff.Mode.SRC_IN);
-                    // this doen't work for 4.4
-//                    ((ImageView) ((FrameLayout) tab).getChildAt(0)).setImageAlpha(0xFF);
                 } else {
                     ((ImageView) ((FrameLayout) tab).getChildAt(0)).setAlpha(0xFF);
                 }
@@ -317,6 +313,10 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
                 ((TextView) tab).setTextColor(Color.argb(0x99, Color.red(tabTextColor), Color.green(tabTextColor), Color.blue(tabTextColor)));
             }
         }
+    }
+
+    public void setCurrentItem(int position) {
+        tabsContainer.getChildAt(position).callOnClick();
     }
 
     private void updateTabStyles() {
@@ -574,6 +574,14 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         super.onRestoreInstanceState(savedState.getSuperState());
         currentPosition = savedState.currentPosition;
         requestLayout();
+
+        for (int i=0; i<tabCount; i++) {
+            if (i == currentPosition) {
+                activateTab(tabsContainer.getChildAt(i));
+            } else {
+                deactivateTab(tabsContainer.getChildAt(i));
+            }
+        }
     }
 
     @Override
@@ -656,11 +664,18 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
         @Override
         public void onPageSelected(int position) {
+            if (pager instanceof NonSwipeableViewPager) {
+                if (!((NonSwipeableViewPager) pager).isHorizontalGestureEnabled()) {
+                    currentPosition = position;
+
+                    scrollToChild(position, (int) (currentPositionOffset * tabsContainer.getChildAt(position).getWidth()));
+
+                    invalidate();
+                }
+            }
             if (delegatePageListener != null) {
                 delegatePageListener.onPageSelected(position);
             }
         }
-
     }
-
 }
