@@ -1,4 +1,4 @@
-package com.astuetz.viewpager.extensions.sample;
+package com.gf.viewpager.extenstions.sample;
 
 import android.graphics.Point;
 import android.os.Build;

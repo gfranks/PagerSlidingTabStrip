@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.astuetz.viewpager.extensions.sample;
+package com.gf.viewpager.extenstions.sample;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;

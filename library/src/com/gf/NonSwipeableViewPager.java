@@ -1,4 +1,4 @@
-package com.astuetz;
+package com.gf;
 
 import android.content.Context;
 import android.util.AttributeSet;
