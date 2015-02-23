@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gf.viewpager.extenstions.sample;
+package com.github.gfranks.viewpager.extensions.sample;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,8 +26,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.TextView;
-
-import com.gf.viewpager.extensions.sample.R;
 
 public class SuperAwesomeCardFragment extends Fragment {
 

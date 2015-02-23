@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gf;
+package com.github.gfranks;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -44,7 +44,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.gf.pagerslidingtabstrip.R;
+import com.github.gfranks.pagerslidingtabstrip.R;
 
 import java.util.Locale;
 
@@ -280,22 +280,30 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         if (applyTabStates) {
             if (pager.getAdapter() instanceof IconTabProvider || pager.getAdapter() instanceof DrawableTabProvider) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    ((ImageView) ((FrameLayout) tab).getChildAt(0)).getDrawable().setColorFilter(Color.argb(0x99, Color.red(tabIconColor), Color.green(tabIconColor), Color.blue(tabIconColor)), PorterDuff.Mode.SRC_IN);
+                    ((ImageView) ((FrameLayout) tab).getChildAt(0)).getDrawable().setColorFilter(Color.argb(153, Color.red(tabIconColor), Color.green(tabIconColor), Color.blue(tabIconColor)), PorterDuff.Mode.SRC_IN);
                 } else {
-                    ((ImageView) ((FrameLayout) tab).getChildAt(0)).setAlpha(0x99);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        ((ImageView) ((FrameLayout) tab).getChildAt(0)).setImageAlpha(153);
+                    } else {
+                        ((ImageView) ((FrameLayout) tab).getChildAt(0)).setAlpha(153);
+                    }
                 }
             } else {
-                ((TextView) tab).setTextColor(Color.argb(0x99, Color.red(tabTextColor), Color.green(tabTextColor), Color.blue(tabTextColor)));
+                ((TextView) tab).setTextColor(Color.argb(153, Color.red(tabTextColor), Color.green(tabTextColor), Color.blue(tabTextColor)));
             }
         } else {
             if (pager.getAdapter() instanceof IconTabProvider || pager.getAdapter() instanceof DrawableTabProvider) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    ((ImageView) ((FrameLayout) tab).getChildAt(0)).getDrawable().setColorFilter(Color.argb(0xFF, Color.red(tabIconColor), Color.green(tabIconColor), Color.blue(tabIconColor)), PorterDuff.Mode.SRC_IN);
+                    ((ImageView) ((FrameLayout) tab).getChildAt(0)).getDrawable().setColorFilter(Color.argb(255, Color.red(tabIconColor), Color.green(tabIconColor), Color.blue(tabIconColor)), PorterDuff.Mode.SRC_IN);
                 } else {
-                    ((ImageView) ((FrameLayout) tab).getChildAt(0)).setAlpha(0xFF);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        ((ImageView) ((FrameLayout) tab).getChildAt(0)).setImageAlpha(255);
+                    } else {
+                        ((ImageView) ((FrameLayout) tab).getChildAt(0)).setAlpha(255);
+                    }
                 }
             } else {
-                ((TextView) tab).setTextColor(Color.argb(0x99, Color.red(tabTextColor), Color.green(tabTextColor), Color.blue(tabTextColor)));
+                ((TextView) tab).setTextColor(Color.argb(255, Color.red(tabTextColor), Color.green(tabTextColor), Color.blue(tabTextColor)));
             }
         }
     }
@@ -304,12 +312,16 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         if (applyTabStates) {
             if (pager.getAdapter() instanceof IconTabProvider || pager.getAdapter() instanceof DrawableTabProvider) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    ((ImageView) ((FrameLayout) tab).getChildAt(0)).getDrawable().setColorFilter(Color.argb(0xFF, Color.red(tabIconColor), Color.green(tabIconColor), Color.blue(tabIconColor)), PorterDuff.Mode.SRC_IN);
+                    ((ImageView) ((FrameLayout) tab).getChildAt(0)).getDrawable().setColorFilter(Color.argb(255, Color.red(tabIconColor), Color.green(tabIconColor), Color.blue(tabIconColor)), PorterDuff.Mode.SRC_IN);
                 } else {
-                    ((ImageView) ((FrameLayout) tab).getChildAt(0)).setAlpha(0xFF);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        ((ImageView) ((FrameLayout) tab).getChildAt(0)).setImageAlpha(255);
+                    } else {
+                        ((ImageView) ((FrameLayout) tab).getChildAt(0)).setAlpha(255);
+                    }
                 }
             } else {
-                ((TextView) tab).setTextColor(Color.argb(0x99, Color.red(tabTextColor), Color.green(tabTextColor), Color.blue(tabTextColor)));
+                ((TextView) tab).setTextColor(Color.argb(255, Color.red(tabTextColor), Color.green(tabTextColor), Color.blue(tabTextColor)));
             }
         }
     }

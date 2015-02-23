@@ -1,4 +1,4 @@
-package com.gf.viewpager.extenstions.sample;
+package com.github.gfranks.viewpager.extensions.sample;
 
 import android.graphics.Point;
 import android.os.Build;
@@ -15,9 +15,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 
-import com.gf.PagerSlidingTabStrip;
-import com.gf.PagerSlidingTabStrip.IconTabProvider;
-import com.gf.viewpager.extensions.sample.R;
+import com.github.gfranks.PagerSlidingTabStrip;
+import com.github.gfranks.PagerSlidingTabStrip.IconTabProvider;
 
 public class QuickContactFragment extends DialogFragment {
 

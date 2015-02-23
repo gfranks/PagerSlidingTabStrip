@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.gf.viewpager.extenstions.sample;
+package com.github.gfranks.viewpager.extensions.sample;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -34,8 +34,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.gf.PagerSlidingTabStrip;
-import com.gf.viewpager.extensions.sample.R;
+import com.github.gfranks.PagerSlidingTabStrip;
 
 public class MainActivity extends FragmentActivity {
 

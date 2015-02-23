@@ -1,4 +1,4 @@
-package com.gf;
+package com.github.gfranks;
 
 import android.content.Context;
 import android.util.AttributeSet;
