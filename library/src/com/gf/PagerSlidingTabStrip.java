@@ -44,7 +44,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.astuetz.pagerslidingtabstrip.R;
+import com.gf.pagerslidingtabstrip.R;
 
 import java.util.Locale;
 

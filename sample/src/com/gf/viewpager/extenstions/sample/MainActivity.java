@@ -34,7 +34,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.astuetz.PagerSlidingTabStrip;
+import com.gf.PagerSlidingTabStrip;
+import com.gf.viewpager.extensions.sample.R;
 
 public class MainActivity extends FragmentActivity {
 

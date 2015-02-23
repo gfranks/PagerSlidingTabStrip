@@ -27,6 +27,8 @@ import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.TextView;
 
+import com.gf.viewpager.extensions.sample.R;
+
 public class SuperAwesomeCardFragment extends Fragment {
 
     private static final String ARG_POSITION = "position";
